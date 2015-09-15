@@ -1,5 +1,6 @@
 body {
 	margin:20px;
+	background-color: gray;
 }
 
 h1 {
@@ -11,6 +12,13 @@ h1 {
 	padding:0;
 }
 
-.date { 
+.date {
 	color:#666;
+}
+
+img {
+	height: 400px;
+	width: 500px;
+	padding: 20px;
+	border: 5px solid white;
 }

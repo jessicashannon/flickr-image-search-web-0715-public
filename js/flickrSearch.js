@@ -1,12 +1,44 @@
 $(document).ready(function(){
-  
-  //write your solution here...
-    
+
+  $('button').click(getFlickrs)
+
 });
 
-/*
+function getFlickrs(){
+  var searchTerm = $('input').val()
+  var url = "https://api.flickr.com/services/rest/?format=json&method=flickr.photos.search&api_key=2fd41b49fedfd589dc265350521ab539&tags="+ searchTerm +"&jsoncallback=?"
+  $.getJSON(url, imageMaker)
+  };
 
-API url: 
+function imageMaker(data){
+  var photos = data.photos.photo;
+  $('#feed').empty;
+  photos.map(function(photo){
+    var farmId = photo.farm;
+    var serverId = photo.server;
+    var id = photo.id;
+    var secret = photo.secret;
+    photo = "<img src=" +"'http://farm" + farmId + ".staticflickr.com/" + serverId + "/" + id + "_" + secret + ".jpg'" + ">"
+    $('#feed').append(photo);
+  })
+
+}
+//
+// http://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
+
+// $.getJSON( "ajax/test.json", function( data ) {
+//   var items = [];
+//   $.each( data, function( key, val ) {
+//     items.push( "<li id='" + key + "'>" + val + "</li>" );
+//   });
+//
+//   $( "<ul/>", {
+//     "class": "my-new-list",
+//     html: items.join( "" )
+//   }).appendTo( "body" );
+// });
+  /*
+API url:
 
 https://www.flickr.com/services/api/request.rest.html
 
